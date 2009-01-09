@@ -2,5 +2,5 @@
 
 (defpackage :qxlisp
   (:use :cl-who :hunchentoot :json :json-rpc :sb-thread :cl)
-  (:export :start-server))
+  (:export :init-qx :stop-qx))
 

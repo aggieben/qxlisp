@@ -1,9 +1,7 @@
 (in-package :qxlisp)
 
 (setq *dispatch-table*
-      (list 'dispatch-easy-handlers
-	    (create-folder-dispatcher-and-handler 
-	     "/qxtest/" "/var/www/localhost/htdocs/rpc/")))
+      (list #'dispatch-easy-handlers))
 
 (define-easy-handler (qxrpc-about :uri "/qxrpc/about")
     nil ; no parameters

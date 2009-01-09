@@ -8,9 +8,10 @@
   :name "qxlisp"
   :version "0.0.1"
   :author "Benjamin Collins"
-  :license "MIT"
   :description "A JSON-RPC backend for Qooxdoo"
-  :components ((:file "qxlisp") 
+  :components ((:file "qxlisp")
+	       (:file "init"
+		      :depends-on ("qxlisp"))
 	       (:file "util"
 		      :depends-on ("qxlisp")) 
 	       (:file "server"
