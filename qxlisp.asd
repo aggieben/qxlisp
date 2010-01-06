@@ -15,9 +15,9 @@
 	       (:file "util"
 		      :depends-on ("qxlisp")) 
 	       (:file "server"
-		      :depends-on ("qxlisp" "rpc" "rpc-test" "util"))
-	       (:file "rpc"
-		      :depends-on ("qxlisp"))
-	       (:file "rpc-test"
-		      :depends-on ("qxlisp")))
+		      :depends-on ("qxlisp" "util"))	       
+	       (:module rpc
+			:components ((:file "system")
+				     (:file "test"))
+			:depends-on ("qxlisp")))
   :depends-on ("cl-json" "cl-who" "hunchentoot"))

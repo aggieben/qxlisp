@@ -6,18 +6,23 @@
 
 (in-package :json-rpc)
 
-(defmacro defun-json-rpc (name lambda-list &body body)
-  "Exports a lambda as a json-rpc target.  Name must be a string."
-  (when (not (stringp name))
-    (error "name must be a string!"))
-  (let ((str "(~a"))
-    (dolist (var lambda-list) 
-      (setf str (concatenate 'string str " ~a")))
-    (setf str (concatenate 'string str ")"))
-    `(export-as-json-rpc #'(lambda ,lambda-list
-			     (hunchentoot:log-message :debug ,str ,name ,@lambda-list)
-			     ,@body)
-			 ,name)))
+;; (defmacro defun-json-rpc (name lambda-list &body body)
+;;   "Exports a lambda as a json-rpc target.  Name must be a string."
+;;   (when (not (stringp name))
+;;     (error "name must be a string!"))
+;;   (let ((str "(~a"))
+;;     (dolist (var lambda-list) 
+;;       (setf str (concatenate 'string str " ~a")))
+;;     (setf str (concatenate 'string str ")"))
+;;     `(export-as-json-rpc #'(lambda ,lambda-list
+;; 			     (hunchentoot:log-message :debug ,str ,name ,@lambda-list)
+;; 			     ,@body)
+;; 			 ,name)))
+
+(defmacro defun-json-rpc-special (name symbol lambda-list &body body)
+  `(progn 
+     (defun ,symbol ,lambda-list ,@body)
+     (export-as-json-rpc #',symbol ,name)))
 
 
 (defun show-json-exports ()

@@ -1,0 +1,10 @@
+/* -*- js2-mode -*- */
+{
+  target: "/qx",
+  transport: "POST",
+  envelope: "JSON-RPC-1.2",
+  SMDVersion: "2.0",
+  services: {
+    
+  }
+}

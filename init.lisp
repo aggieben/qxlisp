@@ -3,9 +3,12 @@
 (defparameter *qx-server* nil)
 
 (defun init-qx ()
-  (when (eq nil *qx-server*)  
-    (setf *qx-server* (start-server :port 4242))))
+  (when (null *qx-server*)    
+    (setf *qx-server* (make-instance 'acceptor :port 4242))
+    (setf *message-log-pathname* "/tmp/qx.log")
+    (start *qx-server*)))
 
 (defun stop-qx ()
-  (stop-server *qx-server*)
-  (setf *qx-server* nil))
+  (when (not (null *qx-server*))
+    (stop *qx-server*)
+    (setf *qx-server* nil)))
